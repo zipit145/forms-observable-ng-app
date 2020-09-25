@@ -4,11 +4,12 @@ import { TodoCardComponent } from './todo-card/todo-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { TodoService } from '../todo.service';
+import { TodoListComponent } from './todo-list/todo-list.component';
 
 
 
 @NgModule({
-  declarations: [TodoCardComponent],
+  declarations: [TodoCardComponent, TodoListComponent],
   imports: [
     CommonModule,
     MatCardModule,
@@ -16,6 +17,7 @@ import { TodoService } from '../todo.service';
   ],
   exports:[
     TodoCardComponent,
+    TodoListComponent,
     MatCardModule,
     MatButtonModule
   ],

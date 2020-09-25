@@ -16,7 +16,10 @@ export class TodoService {
 
   constructor(private http: HttpClient) { }
   
-  getTodos(){
+  getTodo(){
     return this.http.get<Todo>('https://jsonplaceholder.typicode.com/todos/1');
+  }
+  getTodos(){
+    return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos');
   }
 }

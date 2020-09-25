@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Todo } from './todo';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TodoService {
 
   options: {
@@ -18,6 +17,6 @@ export class TodoService {
   constructor(private http: HttpClient) { }
   
   getTodos(){
-    return this.http.get('https://jsonplaceholder.typicode.com/todos/1');
+    return this.http.get<Todo>('https://jsonplaceholder.typicode.com/todos/1');
   }
 }

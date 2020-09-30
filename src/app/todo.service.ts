@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Todo } from './todo';
 
+
+// TODO read about lazy loading with provided in root added here
 @Injectable()
 export class TodoService {
 

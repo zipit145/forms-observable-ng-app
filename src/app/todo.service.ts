@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Todo } from './todo';
-
+import { Observable } from 'rxjs';
+import { map} from 'rxjs/operators';
 
 // TODO read about lazy loading with provided in root added here
 @Injectable()
+
 export class TodoService {
 
   options: {
@@ -21,7 +23,7 @@ export class TodoService {
   getTodo(){
     return this.http.get<Todo>('https://jsonplaceholder.typicode.com/todos/1');
   }
-  getTodos(){
+  getTodos(): Observable<Todo[]>{
     return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos');
   }
 }

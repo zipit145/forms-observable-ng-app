@@ -22,24 +22,27 @@ export class TodoListComponent implements OnInit, OnDestroy {
       { name: 'Frank', age: 20 },
       { name: 'Ryan', age: 50 }
     ]);
-    // set this service call to a subscrition
-    this.todoService.getTodos().pipe(
-      takeUntil(this.destroy$)
-    )
-      .subscribe(data => this.todos = data)
+
 
       // subscription based approach
       // this.getTodos = this.todoService.getTodos()
       // this.getTodosSubscription = this.getTodos.subscribe(data => this.todos = data)
 
     // playing around with map, trying to figure out why this doesnt work.
+    this.todoService.getTodo()
+      .pipe(
+        map((data) => data.id)
+      )
+      .subscribe(data => console.log("type issue",data))
+      // Above example works, commented one below this does not -> why?
     // this.todoService.getTodos()
     //   .pipe(
-    //     map(({title}) => title)
+    //     map((res) => Object.values(res['title']))
     //   )
-    //   .subscribe(data => console.log(data))
+    //   .subscribe(data => console.log("type issues",data))
+
     this.source.pipe(map(({ name }) => name))
-        .subscribe(data => console.log(data))
+      .subscribe(data => console.log(data))
   }
   ngOnDestroy(): void {
     // unsubcribe the subscription for service call here
@@ -48,6 +51,10 @@ export class TodoListComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
   ngOnInit(): void {
+    this.todoService.getTodos().pipe(
+      takeUntil(this.destroy$)
+    )
+      .subscribe(data => this.todos = data)
 
   }
 
